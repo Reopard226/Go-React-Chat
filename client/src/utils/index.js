@@ -17,6 +17,7 @@ export const getToken = () => {
 export const logout = () => {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem(USER_KEY);
+	window.location.reload()
 }
 
 export const isLogin = () => {

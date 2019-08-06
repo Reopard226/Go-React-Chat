@@ -1,12 +1,30 @@
-import axios from 'axios'
-import { setupCache } from 'axios-cache-adapter'
+const getSocketURL = () => {
+  let rawURL = process.env.REACT_APP_ENDPOINT
+  rawURL = rawURL.substr(rawURL.indexOf('://') + 3)
+  rawURL = 'ws://' + rawURL + '/ws'
+  return rawURL
+}
 
-const cache = setupCache({
-  maxAge: 15 * 60 * 1000
-})
+var socket = new WebSocket(getSocketURL());
 
-const api = axios.create({
-  adapter: cache.adapter
-})
+let connect = (cb) => {
+  console.log("connecting")
 
-export default api
+  socket.onopen = () => {
+    console.log("Successfully Connected");
+  }
+  
+  socket.onmessage = (msg) => {
+    cb(msg);
+  }
+
+  socket.onclose = (event) => {
+    console.log("Socket Closed Connection: ", event)
+  }
+
+  socket.onerror = (error) => {
+    console.log("Socket Error: ", error)
+  }
+};
+
+export { connect };

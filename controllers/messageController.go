@@ -10,6 +10,7 @@ import (
 	"github.com/matthew/go-react-chat/common"
 	"github.com/matthew/go-react-chat/data"
 	"github.com/matthew/go-react-chat/models"
+	"github.com/matthew/go-react-chat/websocket"
 )
 
 // CreateMessage inserts a new Message document for a UserId
@@ -38,6 +39,14 @@ func CreateMessage(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		common.DisplayAppError(w, err, "An unexpected error has occurred", 500)
 		return
+	}
+
+	clients := websocket.MainPool.Clients
+	for client := range clients {
+		if err := client.Conn.WriteJSON(message); err != nil {
+			fmt.Println(err)
+			return
+		}
 	}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)

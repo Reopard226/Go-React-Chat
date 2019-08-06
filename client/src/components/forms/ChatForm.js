@@ -10,12 +10,13 @@ const ChatForm = ({ sendChat }) => {
   const onSubmitMessage = (e) => {
     e.preventDefault()
     sendChat({ content: message })
+    setMessage('')
   }
 
   return (
     <Form>
       <Col xs='12' md='8'>
-        <Input placeholder='Message' onChange={e => setMessage(e.target.value)} />
+        <Input placeholder='Message' onChange={e => setMessage(e.target.value)} value={message} />
       </Col>
       <Col xs='12' md='4'>
         <Button variant='raised' className='btn-chat' color='primary' 

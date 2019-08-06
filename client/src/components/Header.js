@@ -4,10 +4,6 @@ import Button from 'muicss/lib/react/button';
 import { logout } from '../utils' 
 
 class Header extends React.Component {
-	constructor(props) {
-		super(props)
-  }
-  
   logout = () => {
     const state = this.props.appState
     logout()
@@ -31,7 +27,7 @@ class Header extends React.Component {
 
 	render() {
 		let s1 = {verticalAlign: 'middle'};
-    const { user, authenticated, chosenForm } = this.props.appState
+    const { user, authenticated } = this.props.appState
     return (
       <Appbar>
        <table width="100%">

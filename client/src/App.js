@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.min.css'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
-import { getUser, logout, isLogin } from './utils'
+import { getUser, isLogin } from './utils'
 class App extends Component {
   constructor(props) {
     super(props)

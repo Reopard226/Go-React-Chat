@@ -8,14 +8,16 @@ import (
 	"github.com/gorilla/handlers"
 	common "github.com/matthew/go-react-chat/common"
 	"github.com/matthew/go-react-chat/routers"
+	"github.com/matthew/go-react-chat/websocket"
 )
+
+const STATIC_DIR = "./client/build"
 
 //Entry point of the program
 func main() {
-
-	//common.StartUp() - Replaced with init method
-	// Get the mux router object
+	websocket.NewPoolStart()
 	router := routers.InitRoutes()
+	router.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir(STATIC_DIR))))
 	headers := handlers.AllowedHeaders([]string{"X-Request-With", "Content-Type", "Authorization"})
 	methods := handlers.AllowedMethods([]string{"GET", "POST"})
 	origins := handlers.AllowedOrigins([]string{"*"})
