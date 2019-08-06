@@ -5,7 +5,9 @@ const getSocketURL = () => {
   return rawURL
 }
 
-var socket = new WebSocket(getSocketURL());
+let socket = new WebSocket(getSocketURL());
+let pingHandler;
+let instance = 0
 
 let connect = (cb) => {
   console.log("connecting")
@@ -16,6 +18,10 @@ let connect = (cb) => {
   
   socket.onmessage = (msg) => {
     cb(msg);
+    if(instance === 0) {
+      instance = 1
+      pingWS()
+    } 
   }
 
   socket.onclose = (event) => {
@@ -25,11 +31,17 @@ let connect = (cb) => {
   socket.onerror = (error) => {
     console.log("Socket Error: ", error)
   }
+
 };
 
-let sendMsg = (msg) => {
-  console.log("sending msg: ", msg);
-  socket.send(msg);
+let pingWS = () => {
+  socket.send('ping');
+  pingHandler = setTimeout(pingWS, 20000)
 };
 
-export { connect, sendMsg };
+let stopPing = () => {
+  instance = 0
+  clearTimeout(pingHandler)
+}
+
+export { connect };

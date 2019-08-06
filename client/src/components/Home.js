@@ -6,7 +6,7 @@ import SignupForm from './forms/SignupForm';
 import ChatForm from './forms/ChatForm';
 import { logout, setValue, getToken } from '../utils';
 import { createNotification } from '../config/notification'
-import { connect, sendMsg } from '../config/api';
+import { connect } from '../config/api';
 
 const endpoint = process.env.REACT_APP_ENDPOINT
 
@@ -19,8 +19,9 @@ class Home extends Component {
 	}
 
 	componentDidMount() {
-		if (this.props.appState.authenticated)
-			connect(this.connectWS);
+		if (this.props.appState.authenticated){
+			connect(this.connectWS)
+		}
 	}
 
 	connectWS = (msg) => {
@@ -41,17 +42,6 @@ class Home extends Component {
 			isLogin: false
 		})
 		logout();
-
-	}
-
-	getAllMessages = () => {
-		axios.get(endpoint + '/messages', this.getHeaders())
-			.then(res => {
-				this.setState({ messages: res.data.data })
-			})
-			.catch(err => {
-				createNotification('error', err.message)
-			})
 	}
 
 	handleLogin = (data) => {
@@ -83,7 +73,6 @@ class Home extends Component {
 	}
 
 	handleSend = (data) => {
-		sendMsg(data.content)
 		axios.post(endpoint + '/messages', { data }, this.getHeaders())
 			.catch(err => {
 				console.log(err.message)
