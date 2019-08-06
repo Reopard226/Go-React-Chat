@@ -15,10 +15,10 @@ const ChatForm = ({ sendChat }) => {
 
   return (
     <Form>
-      <Col xs='12' md='8'>
+      <Col xs='12' md='9'>
         <Input placeholder='Message' onChange={e => setMessage(e.target.value)} value={message} />
       </Col>
-      <Col xs='12' md='4'>
+      <Col xs='12' md='3'>
         <Button variant='raised' className='btn-chat' color='primary' 
           onClick={onSubmitMessage}>
           Send

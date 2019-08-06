@@ -38,11 +38,11 @@ class Header extends React.Component {
              </td>
              <td className="mui--appbar-height nav-right" >
               {user && <span className='username'><i className='fas fa-user' /> {user}</span>}
-              {authenticated && <Button color="danger" onClick={this.logout}>Logout</Button>}
+              {authenticated && <Button color="primary" onClick={this.logout}>Logout</Button>}
               {!authenticated && (
                 <React.Fragment>
-                  <Button color="danger" onClick={this.setLogin}>Login</Button>
-                  <Button color="danger" onClick={this.setSingup}>Signup</Button>
+                  <Button color="primary" onClick={this.setLogin}>Login</Button>
+                  <Button color="primary" onClick={this.setSingup}>Signup</Button>
                 </React.Fragment>
               )}
              </td>

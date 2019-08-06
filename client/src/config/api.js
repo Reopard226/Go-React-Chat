@@ -26,10 +26,12 @@ let connect = (cb) => {
 
   socket.onclose = (event) => {
     console.log("Socket Closed Connection: ", event)
+    stopPing()
   }
 
   socket.onerror = (error) => {
     console.log("Socket Error: ", error)
+    stopPing()
   }
 
 };

@@ -38,7 +38,7 @@ const SignupForm = ({ signup }) => {
 
   return (
     <Form>
-      <Col xs='12' md='8'>
+      <Col xs='12' md='9'>
         <Input placeholder='Username' onChange={onChangeName} />
         {nameErr && <div className='error'>Username is required</div>}
         <Input placeholder='Email' onChange={onChangeEmail} />
@@ -46,7 +46,7 @@ const SignupForm = ({ signup }) => {
         <Input placeholder='Password' type='password' onChange={onChangePassword} />
         {passwordErr && <div className='error'>Password is required</div>}
       </Col>
-      <Col xs='12' md='4'>
+      <Col xs='12' md='3'>
         <Button variant='raised' className='btn-signup' color='primary' onClick={signupSubmit}>
           Register
         </Button>

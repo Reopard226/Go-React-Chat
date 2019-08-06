@@ -23,12 +23,12 @@ const LoginForm = ({ login }) => {
 
   return (
     <Form>
-      <Col xs='12' md='8'>
+      <Col xs='12' md='9'>
         <Input placeholder='Email' onChange={onChangeEmail} />
         {emailErr && <div className='error'>Email is required</div>}
         <Input placeholder='Password' type='password' onChange={e => setPassword(e.target.value)} />
       </Col>
-      <Col xs='12' md='4'>
+      <Col xs='12' md='3'>
         <Button variant='raised' className='btn-login' color='primary' onClick={loginSubmit}>
           Login
         </Button>

@@ -3,7 +3,6 @@ import './App.css';
 import './components/style.css'
 import 'react-toastify/dist/ReactToastify.min.css'
 import Header from './components/Header';
-import Footer from './components/Footer';
 import Home from './components/Home';
 import { getUser, isLogin } from './utils'
 class App extends Component {
@@ -21,11 +20,13 @@ class App extends Component {
 
   render() {
     return (
-      <div className='container'>
+      <React.Fragment>
         <Header appState={this.state} setAppState={this.setAppState} />
-        <Home appState={this.state} setAppState={this.setAppState} />
-        <Footer />
-      </div>
+        <div className='home'>
+          <Home appState={this.state} setAppState={this.setAppState} />
+        </div>
+      </React.Fragment>
+      
     );
   }
 }
