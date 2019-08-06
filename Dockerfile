@@ -2,10 +2,10 @@
 FROM golang
 
 # Copy the local package files to the container’s workspace.
-ADD . /go/src/github.com/shijuvar/go-web/taskmanager
+ADD . /go/src/github.com/Reopard226/go-react-chat
 
 # Setting up working directory
-WORKDIR /go/src/github.com/shijuvar/go-web/taskmanager
+WORKDIR /go/src/github.com/Reopard226/go-react-chat
 
 # Get godeps for managing and restoring dependencies
 RUN go get -u github.com/golang/dep/cmd/dep
@@ -13,11 +13,9 @@ RUN go get -u github.com/golang/dep/cmd/dep
 # Restore godep dependencies
 RUN dep ensure
 
-# Build the taskmanager command inside the container.
-RUN go install github.com/shijuvar/go-web/taskmanager
+RUN go install github.com/Reopard226/go-react-chat
 
-# Run the taskmanager command when the container starts.
-ENTRYPOINT /go/bin/taskmanager
+ENTRYPOINT /go/bin/go-react-chat
 
-# Service listens on port 8080.
-EXPOSE 8080
+# Service listens on port 8000.
+EXPOSE 8000
