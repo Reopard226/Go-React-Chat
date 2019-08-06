@@ -6,7 +6,7 @@ import SignupForm from './forms/SignupForm';
 import ChatForm from './forms/ChatForm';
 import { logout, setValue, getToken } from '../utils';
 import { createNotification } from '../config/notification'
-import { connect } from '../config/api';
+import { connect, sendMsg } from '../config/api';
 
 const endpoint = process.env.REACT_APP_ENDPOINT
 
@@ -83,6 +83,7 @@ class Home extends Component {
 	}
 
 	handleSend = (data) => {
+		sendMsg(data.content)
 		axios.post(endpoint + '/messages', { data }, this.getHeaders())
 			.catch(err => {
 				console.log(err.message)
