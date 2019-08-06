@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/matthew/go-react-chat/common"
-	"github.com/matthew/go-react-chat/data"
-	"github.com/matthew/go-react-chat/models"
+	"github.com/Reopard226/go-react-chat/common"
+	"github.com/Reopard226/go-react-chat/data"
+	"github.com/Reopard226/go-react-chat/models"
 )
 
 // Register add a new User document

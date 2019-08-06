@@ -7,10 +7,10 @@ import (
 
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/matthew/go-react-chat/common"
-	"github.com/matthew/go-react-chat/data"
-	"github.com/matthew/go-react-chat/models"
-	"github.com/matthew/go-react-chat/websocket"
+	"github.com/Reopard226/go-react-chat/common"
+	"github.com/Reopard226/go-react-chat/data"
+	"github.com/Reopard226/go-react-chat/models"
+	"github.com/Reopard226/go-react-chat/websocket"
 )
 
 // CreateMessage inserts a new Message document for a UserId

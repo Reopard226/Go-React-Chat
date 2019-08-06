@@ -8,10 +8,10 @@ ADD . /go/src/github.com/shijuvar/go-web/taskmanager
 WORKDIR /go/src/github.com/shijuvar/go-web/taskmanager
 
 # Get godeps for managing and restoring dependencies
-RUN go get github.com/tools/godep
+RUN go get -u github.com/golang/dep/cmd/dep
 
 # Restore godep dependencies
-RUN godep restore 
+RUN dep ensure
 
 # Build the taskmanager command inside the container.
 RUN go install github.com/shijuvar/go-web/taskmanager

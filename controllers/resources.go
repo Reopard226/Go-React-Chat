@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/matthew/go-react-chat/models"
+	"github.com/Reopard226/go-react-chat/models"
 )
 
 //Models for JSON resources

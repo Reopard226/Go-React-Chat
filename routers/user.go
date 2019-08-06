@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/Reopard226/go-react-chat/controllers"
+	"github.com/Reopard226/go-react-chat/websocket"
 	"github.com/gorilla/mux"
-	"github.com/matthew/go-react-chat/controllers"
-	"github.com/matthew/go-react-chat/websocket"
 )
 
 func serveWs(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {

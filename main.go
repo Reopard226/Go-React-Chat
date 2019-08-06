@@ -4,11 +4,11 @@ import (
 	"log"
 	"net/http"
 
+	common "github.com/Reopard226/go-react-chat/common"
+	"github.com/Reopard226/go-react-chat/routers"
+	"github.com/Reopard226/go-react-chat/websocket"
 	"github.com/codegangsta/negroni"
 	"github.com/gorilla/handlers"
-	common "github.com/matthew/go-react-chat/common"
-	"github.com/matthew/go-react-chat/routers"
-	"github.com/matthew/go-react-chat/websocket"
 )
 
 const STATIC_DIR = "./client/build"

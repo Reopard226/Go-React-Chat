@@ -1,10 +1,10 @@
 package routers
 
 import (
+	"github.com/Reopard226/go-react-chat/common"
+	"github.com/Reopard226/go-react-chat/controllers"
 	"github.com/codegangsta/negroni"
 	"github.com/gorilla/mux"
-	"github.com/matthew/go-react-chat/common"
-	"github.com/matthew/go-react-chat/controllers"
 )
 
 // SetMessageRoutes configures routes for message entity

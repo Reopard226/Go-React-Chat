@@ -6,7 +6,7 @@ import (
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/matthew/go-react-chat/models"
+	"github.com/Reopard226/go-react-chat/models"
 )
 
 type MessageRepository struct {

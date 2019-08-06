@@ -3,7 +3,7 @@ package controllers
 import (
 	"gopkg.in/mgo.v2"
 
-	"github.com/matthew/go-react-chat/common"
+	"github.com/Reopard226/go-react-chat/common"
 )
 
 // Context used for maintaining HTTP Request Context
