@@ -5,7 +5,7 @@ import SignupForm from './forms/SignupForm';
 import ChatForm from './forms/ChatForm';
 import { logout, setValue, getToken } from '../utils';
 import { createNotification } from '../config/notification'
-import { connect } from '../config/api';
+import { pingWS } from '../config/api';
 
 const endpoint = process.env.REACT_APP_ENDPOINT
 
@@ -18,13 +18,14 @@ class Home extends Component {
 	}
 
 	componentDidMount() {
+		pingWS(this.connectWS)
 		if (this.props.appState.authenticated){
-			connect(this.connectWS)
 			this.getAllMessages()
 		}
 	}
 
 	connectWS = (msg) => {
+		if (!this.props.appState.authenticated) return
 		const messages = this.state.messages
 		const data = JSON.parse(msg.data)
 		if (data.username) messages.push(data)
@@ -47,7 +48,6 @@ class Home extends Component {
 	handleLogin = (data) => {
 		axios.post(endpoint + '/login', { data })
 			.then(res => {
-				connect(this.connectWS);
 				const appState = this.props.appState
 				appState.user = res.data.data.user.name
 				appState.authenticated = true

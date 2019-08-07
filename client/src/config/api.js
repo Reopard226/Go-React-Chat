@@ -6,44 +6,36 @@ const getSocketURL = () => {
 }
 
 let socket = new WebSocket(getSocketURL());
-let pingHandler;
-let instance = 0
+let connected = false
 
 let connect = (cb) => {
   console.log("connecting")
 
   socket.onopen = () => {
     console.log("Successfully Connected");
+    connected = true
   }
   
   socket.onmessage = (msg) => {
     cb(msg);
-    if(instance === 0) {
-      instance = 1
-      pingWS()
-    } 
   }
 
   socket.onclose = (event) => {
+    connected = false
     console.log("Socket Closed Connection: ", event)
-    stopPing()
   }
 
   socket.onerror = (error) => {
+    connected = false
     console.log("Socket Error: ", error)
-    stopPing()
   }
 
 };
 
-let pingWS = () => {
-  socket.send('ping');
-  pingHandler = setTimeout(pingWS, 20000)
+let pingWS = (cb) => {
+  if (connected) socket.send('ping')
+  else connect(cb)
+  setTimeout(pingWS, 10000)
 };
 
-let stopPing = () => {
-  instance = 0
-  clearTimeout(pingHandler)
-}
-
-export { connect };
+export { pingWS };
