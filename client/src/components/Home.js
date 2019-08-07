@@ -5,7 +5,7 @@ import SignupForm from './forms/SignupForm';
 import ChatForm from './forms/ChatForm';
 import { logout, setValue, getToken } from '../utils';
 import { createNotification } from '../config/notification'
-import { pingWS } from '../config/api';
+import { connect } from '../config/api';
 
 const endpoint = process.env.REACT_APP_ENDPOINT
 
@@ -18,10 +18,7 @@ class Home extends Component {
 	}
 
 	componentDidMount() {
-		pingWS(this.connectWS)
-		if (this.props.appState.authenticated){
-			this.getAllMessages()
-		}
+		connect(this.connectWS, this.getAllMessages)
 	}
 
 	connectWS = (msg) => {
@@ -54,7 +51,6 @@ class Home extends Component {
 				appState.chosenForm = 'chat'
 				setValue({ token: res.data.data.token, user: res.data.data.user.name })
 				this.props.setAppState(appState)
-				this.getAllMessages()
 			})
 			.catch(err => {
 				createNotification('error', err.message)
@@ -82,6 +78,7 @@ class Home extends Component {
 	}
 
 	getAllMessages = () => {
+		if(!this.props.appState.authenticated) return
 		axios.get(endpoint + '/messages', this.getHeaders())
 			.then(res => {
 				this.setState({ messages: res.data.data })
@@ -89,7 +86,7 @@ class Home extends Component {
 				element.scrollTop = element.scrollHeight; // Auto scroll to the bottom
 			})
 			.catch(err => {
-				createNotification('error', err.message)
+				console.log('Network connection is not avaiable')
 			})
 	}
 

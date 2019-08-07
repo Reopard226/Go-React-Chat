@@ -5,15 +5,13 @@ const getSocketURL = () => {
   return rawURL
 }
 
-let socket = new WebSocket(getSocketURL());
-let connected = false
-
-let connect = (cb) => {
+let connect = (cb, getHistory) => {
   console.log("connecting")
+  let socket = new WebSocket(getSocketURL());
+  getHistory()
 
   socket.onopen = () => {
     console.log("Successfully Connected");
-    connected = true
   }
   
   socket.onmessage = (msg) => {
@@ -21,21 +19,14 @@ let connect = (cb) => {
   }
 
   socket.onclose = (event) => {
-    connected = false
     console.log("Socket Closed Connection: ", event)
+    setTimeout(() => connect(cb, getHistory), 30000)
   }
 
   socket.onerror = (error) => {
-    connected = false
     console.log("Socket Error: ", error)
   }
 
 };
 
-let pingWS = (cb) => {
-  if (connected) socket.send('ping')
-  else connect(cb)
-  setTimeout(pingWS, 10000)
-};
-
-export { pingWS };
+export { connect };
