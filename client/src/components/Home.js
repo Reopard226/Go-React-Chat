@@ -51,6 +51,7 @@ class Home extends Component {
 				appState.chosenForm = 'chat'
 				setValue({ token: res.data.data.token, user: res.data.data.user.name })
 				this.props.setAppState(appState)
+				this.getAllMessages()
 			})
 			.catch(err => {
 				createNotification('error', err.message)
