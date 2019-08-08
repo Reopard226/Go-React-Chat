@@ -134,7 +134,7 @@ class Home extends Component {
 		return (
 			<div className='home-board'>
 				<div className='message-board' id='messages'>
-					{this.state.messages.map((message, i) => {
+					{this.state.messages && this.state.messages.map((message, i) => {
 						if (i % 2 === 0) return this.renderLeftMessage(message)
 						else return this.renderRightMessage(message)
 					})}
