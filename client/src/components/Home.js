@@ -82,7 +82,7 @@ class Home extends Component {
 		if(!this.props.appState.authenticated) return
 		axios.get(endpoint + '/messages', this.getHeaders())
 			.then(res => {
-				this.setState({ messages: res.data.data })
+				if (res.data.data) this.setState({ messages: res.data.data })
 				var element = document.getElementById('messages');
 				element.scrollTop = element.scrollHeight; // Auto scroll to the bottom
 			})
@@ -134,7 +134,7 @@ class Home extends Component {
 		return (
 			<div className='home-board'>
 				<div className='message-board' id='messages'>
-					{this.state.messages && this.state.messages.map((message, i) => {
+					{this.state.messages.map((message, i) => {
 						if (i % 2 === 0) return this.renderLeftMessage(message)
 						else return this.renderRightMessage(message)
 					})}
